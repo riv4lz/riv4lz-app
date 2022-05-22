@@ -14,6 +14,16 @@
 		96905EF65AED1B983A6B3ABC /* libPods-Test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-Test.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		CAC9439F77BA445AB8334ABB /* 1646754967359.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC7639D2C1E4CF8BE5BDEE7 /* 1646754967359.png */; };
+		2648DD6363C84E7AA58B9D42 /* Login_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 697493D15CD8462AB254FE5E /* Login_Background.png */; };
+		2B01F688E7244709936951FB /* CSGO.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7AF4DEE5F0FB49448EE424BC /* CSGO.jpg */; };
+		2CE8F57528C64B2FB6D9980E /* LOL.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C57E88954674B408239F558 /* LOL.jpg */; };
+		8CDAA6706C91428DA9651874 /* VALORANT.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43E01831D4564588942E19E6 /* VALORANT.jpg */; };
+		679CBFD927E24A759A4CBED5 /* WOW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4959138DE9545FBB8ABBF34 /* WOW.jpg */; };
+		D26A09D96B4E414DA9EF694B /* csgo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18F1590DCCE8452AAA3F0341 /* csgo.jpg */; };
+		7827F0C102FA41BF9F5BFBFA /* general.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB4F0EF3256449FABE5E063F /* general.jpg */; };
+		FD9F664A31D54E72B7D5BC4E /* lol.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F0ABAFD65429FB29CAD79 /* lol.jpg */; };
+		5CB6B01A032C49079D7BA7B1 /* wow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15E836EFF1CD42EFAA9A43B7 /* wow.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +41,16 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Test/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		ACC7639D2C1E4CF8BE5BDEE7 /* 1646754967359.png */ = {isa = PBXFileReference; name = "1646754967359.png"; path = "../assets/images/1646754967359.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		697493D15CD8462AB254FE5E /* Login_Background.png */ = {isa = PBXFileReference; name = "Login_Background.png"; path = "../assets/images/backgrounds/Login_Background.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7AF4DEE5F0FB49448EE424BC /* CSGO.jpg */ = {isa = PBXFileReference; name = "CSGO.jpg"; path = "../assets/images/GameLogos/CSGO.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9C57E88954674B408239F558 /* LOL.jpg */ = {isa = PBXFileReference; name = "LOL.jpg"; path = "../assets/images/GameLogos/LOL.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		43E01831D4564588942E19E6 /* VALORANT.jpg */ = {isa = PBXFileReference; name = "VALORANT.jpg"; path = "../assets/images/GameLogos/VALORANT.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A4959138DE9545FBB8ABBF34 /* WOW.jpg */ = {isa = PBXFileReference; name = "WOW.jpg"; path = "../assets/images/GameLogos/WOW.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		18F1590DCCE8452AAA3F0341 /* csgo.jpg */ = {isa = PBXFileReference; name = "csgo.jpg"; path = "../assets/images/GameLogos/csgo.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FB4F0EF3256449FABE5E063F /* general.jpg */ = {isa = PBXFileReference; name = "general.jpg"; path = "../assets/images/GameLogos/general.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4C9F0ABAFD65429FB29CAD79 /* lol.jpg */ = {isa = PBXFileReference; name = "lol.jpg"; path = "../assets/images/GameLogos/lol.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		15E836EFF1CD42EFAA9A43B7 /* wow.jpg */ = {isa = PBXFileReference; name = "wow.jpg"; path = "../assets/images/GameLogos/wow.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +105,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				305C2A1C302B428F9D8DCC32 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -132,6 +153,24 @@
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
+		};
+		305C2A1C302B428F9D8DCC32 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				ACC7639D2C1E4CF8BE5BDEE7 /* 1646754967359.png */,
+				697493D15CD8462AB254FE5E /* Login_Background.png */,
+				7AF4DEE5F0FB49448EE424BC /* CSGO.jpg */,
+				9C57E88954674B408239F558 /* LOL.jpg */,
+				43E01831D4564588942E19E6 /* VALORANT.jpg */,
+				A4959138DE9545FBB8ABBF34 /* WOW.jpg */,
+				18F1590DCCE8452AAA3F0341 /* csgo.jpg */,
+				FB4F0EF3256449FABE5E063F /* general.jpg */,
+				4C9F0ABAFD65429FB29CAD79 /* lol.jpg */,
+				15E836EFF1CD42EFAA9A43B7 /* wow.jpg */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -196,6 +235,16 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+				CAC9439F77BA445AB8334ABB /* 1646754967359.png in Resources */,
+				2648DD6363C84E7AA58B9D42 /* Login_Background.png in Resources */,
+				2B01F688E7244709936951FB /* CSGO.jpg in Resources */,
+				2CE8F57528C64B2FB6D9980E /* LOL.jpg in Resources */,
+				8CDAA6706C91428DA9651874 /* VALORANT.jpg in Resources */,
+				679CBFD927E24A759A4CBED5 /* WOW.jpg in Resources */,
+				D26A09D96B4E414DA9EF694B /* csgo.jpg in Resources */,
+				7827F0C102FA41BF9F5BFBFA /* general.jpg in Resources */,
+				FD9F664A31D54E72B7D5BC4E /* lol.jpg in Resources */,
+				5CB6B01A032C49079D7BA7B1 /* wow.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
