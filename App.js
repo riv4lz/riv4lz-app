@@ -90,16 +90,6 @@ function App() {
                         ),
                     }}
                 />
-                <Tab.Screen
-                    name="ChatRooms"
-                    component={AuthView}
-                    options={{
-                        tabBarLabel: 'Chat',
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="chat" color={color} size={size} />
-                        ),
-                    }}
-                />
                 {!authStore.signedIn ?
                     ( <Tab.Screen
                     name="Login"
@@ -112,6 +102,16 @@ function App() {
                     }}
                 /> ) : (
                         <>
+                            <Tab.Screen
+                                name="ChatRooms"
+                                component={AuthView}
+                                options={{
+                                    tabBarLabel: 'Chat',
+                                    tabBarIcon: ({ color, size }) => (
+                                        <MaterialCommunityIcons name="chat" color={color} size={size} />
+                                    ),
+                                }}
+                            />
                             <Tab.Screen
                                 name="Profile"
                                 component={ProfileScreen}

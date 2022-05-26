@@ -100,20 +100,15 @@ function ProfileScreen({ navigation }) {
             aspect: [4, 3],
             base64: true
         });
-
         if (!result.cancelled) {
             setImage(result.uri)
-
             let base64Img = `data:image/jpg;base64,${result.base64}`
-
             //Add your cloud name
             let apiUrl = 'https://api.cloudinary.com/v1_1/riv4lz/image/upload';
-
             let data = {
                 "file": base64Img,
                 "upload_preset": "profileImage",
             }
-
             fetch(apiUrl, {
                 body: JSON.stringify(data),
                 headers: {
@@ -127,7 +122,6 @@ function ProfileScreen({ navigation }) {
                 return data.secure_url
             }).catch(err=>console.log(err))
         }
-
     }
 
     return (
