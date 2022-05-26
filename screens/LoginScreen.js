@@ -35,7 +35,7 @@ import {useStore} from "../stores/store";
 const {brand, darkLight, primary} = Colors;
 
 const LoginScreen = () => {
-    const { authStore } = useStore();
+    const { authStore, casterStore } = useStore();
     const [hidePassword, setHidePassword] = useState(true);
 
 
@@ -47,6 +47,7 @@ const LoginScreen = () => {
         if (authStore.user !== null) {
             console.log("YOU ARE LOGGED IN NOW");
             console.log(authStore.user);
+            await casterStore.loadCaster(authStore.user.id).then(console.log("caster is now loaded"));
         }
     }
 

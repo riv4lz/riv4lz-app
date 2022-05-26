@@ -1,5 +1,5 @@
 import http from "../http-cmmon";
-import {ImageUpload} from "../stores/casterStore";
+import type {ImageUpload} from "../dtos/imageUpload";
 
 class CasterService {
     async get(id: any) {

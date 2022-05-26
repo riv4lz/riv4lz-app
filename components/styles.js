@@ -171,8 +171,10 @@ export const RoomsButtonsView = styled.FlatList`
 `;
 
 export const RoomButtons = styled.TouchableOpacity`
-    width: 75px;
-    height: 75px;
+  padding-left: 20px;
+  padding-right: 20px;
+    width: 100%;
+    height: 90px;
 `;
 
 export const RoomButtonsImage = styled.ImageBackground`
@@ -271,3 +273,35 @@ export const PageTitleChat = styled.Text`
 export const Test = styled.View`
   width: 100%;
 `;
+
+export const StyledContainerGrid = styled.View`
+  flex: 1;
+  padding: ${StatusBarHeight + 10}px;
+`;
+
+export const InnerContainerGrid = styled.View`
+    flex: 1;
+    width: 100%;
+    padding-bottom: 150px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+`;
+
+export const ChatRoomContainer = styled.View`
+    flex-wrap: wrap;
+    height: 50%;
+    width: 50%;
+    align-content: center;
+    justify-content: center;
+`;
+
+export const ChatRoomName = styled.Text`
+  font-size: 11px;
+  text-align: center;
+  font-weight: bold;
+  color: ${tertiary};
+  padding: 10px;
+`;
+
+

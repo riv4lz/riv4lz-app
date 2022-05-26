@@ -12,9 +12,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from "./screens/ProfileScreen";
 import 'localstorage-polyfill';
-import {autorun, observe} from "mobx";
+import {autorun, observe, when} from "mobx";
 import LoginScreen from "./screens/LoginScreen";
 import TestScreen from "./screens/TestScreen";
+import {observer} from "mobx-react";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,23 +24,22 @@ function App() {
     const {commentStore, authStore} = useStore();
     const [signedIn, setSignedIn] = useState(false);
 
-    autorun(() => {
-        if (authStore.signedIn) {
-            console.log("Now I'm hungry!");
-            test3();
-        } else {
-            console.log("I'm not hungry!")
-            test4();
-        }
-    })
+
+    async function test5() {
+        await when(() => authStore.signedIn).then(
+            console.log("fiskehandler")
+        )
+        console.log("fiskehandler");
+    }
 
     let test3 = () => {
         setSignedIn(true);
     }
 
-    const test4 = () => {
+    let test4 = () => {
         setSignedIn(false);
     }
+
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -100,7 +100,7 @@ function App() {
                         ),
                     }}
                 />
-                {!signedIn ?
+                {!authStore.signedIn ?
                     ( <Tab.Screen
                     name="Login"
                     component={LoginScreen}
@@ -156,4 +156,4 @@ function AuthView ({ navigation }) {
     );
 }
 
-export default App;
+export default observer(App);

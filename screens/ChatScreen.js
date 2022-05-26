@@ -53,7 +53,7 @@ function ChatScreen ({ route, navigation }) {
             ChatRoomId: commentStore.test2.id,
             Id: v4(),
             Text: localMessage,
-            Username: localUserName,
+            Username: casterStore.caster.name,
         }
         commentStore.addComment(message).then(() => {
         });
@@ -129,7 +129,7 @@ function ChatScreen ({ route, navigation }) {
 
 
 
-    return useObserver(() => (
+    return (
             <StyledContainerChat>
                 <StatusBar style={"dark"}></StatusBar>
                 <InnerContainer>
@@ -141,7 +141,7 @@ function ChatScreen ({ route, navigation }) {
                     </SendIcon>
                 </InnerContainer>
             </StyledContainerChat>
-    ));
+    );
 }
 
 const styles = StyleSheet.create({

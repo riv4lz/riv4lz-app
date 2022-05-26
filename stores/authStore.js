@@ -1,4 +1,4 @@
-import {makeAutoObservable, observable, action} from "mobx";
+import {makeAutoObservable, observable, action, runInAction} from "mobx";
 import authService, {loginDto} from "../services/authService";
 import axios from "axios";
 import 'localstorage-polyfill';
@@ -29,11 +29,13 @@ export class AuthStore{
     @action
     attemptLogin2 = async (data: loginDto) => {
         const response = await authService.attemptLogin(data);
-        this.user = response.data;
-        if(this.user) {
-            this.signedIn = true;
-        }
-        console.log(this.user);
+        runInAction(() => {
+            this.user = response.data;
+            if(this.user) {
+                this.signedIn = true;
+            }
+            console.log(this.user);
+        });
     }
 
     @action

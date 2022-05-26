@@ -1,22 +1,17 @@
-import { makeAutoObservable, observable, action } from "mobx";
+import {makeAutoObservable, observable, action, runInAction} from "mobx";
 import casterService from "../services/casterService";
+import type {ImageUpload} from "../dtos/imageUpload";
 
 export interface Caster {
     id: string,
     name: string,
     description: string,
-    profileImage: string | null,
-    bannerImage: string | null,
-    facebookURL: string,
-    twitterURL: string,
-    discordURL: string,
-    twitchURL: string
-}
-
-export interface ImageUpload {
-    userId: string,
-    imageUrl: string,
-    imageType: number,
+    profileImageUrl: string | null,
+    bannerImageUrl: string | null,
+    facebookUrl: string,
+    twitterUrl: string,
+    discordUrl: string,
+    twitchUrl: string
 }
 
 export class CasterStore {
@@ -26,13 +21,14 @@ export class CasterStore {
     @action
     loadCaster = async (id: any) => {
         const response = await casterService.get(id);
-        this.caster = response.data;
-        console.log(this.caster);
+        runInAction(() => {
+            this.caster = response.data;
+        });
     }
 
     @action
     postImage = async (image: ImageUpload) => {
-        await casterService.uploadImage(image).then(console.log("IMAGE UPLOADED")).catch((error) => console.log( error.response.request._response ) );
+        await casterService.uploadImage(image).then().catch((error) => console.log( error.response.request._response ) );
     }
 
     constructor() {
