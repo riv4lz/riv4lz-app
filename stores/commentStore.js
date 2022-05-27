@@ -47,7 +47,7 @@ export default class CommentStore{
     createHubConnection = () => {
         console.log("trying to connect");
         this.hubConnection = new HubConnectionBuilder()
-            .withUrl('http://10.0.2.2:5000/chat')
+            .withUrl('http://70.34.201.1:9797/chat')
             .withAutomaticReconnect()
             .configureLogging(LogLevel.Information)
             .build();
