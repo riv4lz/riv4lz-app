@@ -5,7 +5,7 @@ import banner from "../assets/images/backgrounds/Login_Background.png"
 
 const StatusBarHeight = Constants.statusBarHeight;
 
-// Colors
+// colors
 export const Colors = {
     primary: "#111111",
     secondary: "#E5E7EB",

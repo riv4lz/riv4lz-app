@@ -2,16 +2,22 @@ import { View, Text } from "react-native";
 import type {ChatRoom} from "../stores/commentStore";
 import {useStore} from "../stores/store";
 import React, {useEffect, useState} from "react";
+
+// styles
+
 import {
-    ChatRoomContainer, ChatRoomName,
-    InnerContainer, InnerContainerGrid,
+    ChatRoomContainer,
+    ChatRoomName,
+    InnerContainer,
+    InnerContainerGrid,
     PageLogo,
     PageTitle,
     RoomButtons,
     RoomButtonsImage,
-    StyledContainer, StyledContainerGrid,
-    SubTitle, TestContainer
+    StyledContainerGrid,
+    SubTitle
 } from "../components/styles";
+
 import { StatusBar } from "expo-status-bar";
 
 function ChatRoomsScreen ({ navigation }) {

@@ -1,7 +1,7 @@
-import {observer, useObserver} from "mobx-react";
+import {observer} from "mobx-react";
 import {useStore} from "../stores/store";
 import {useEffect, useState} from "react";
-import {Button, Image, ScrollView, StyleSheet, Text, View, TextInput} from "react-native";
+import {Image, StyleSheet, Text, View} from "react-native";
 import * as React from "react";
 import { v4 } from 'uuid';
 import 'react-native-get-random-values';
@@ -23,31 +23,26 @@ import {Formik} from "formik";
 
 
 // colors
-const {brand, darkLight, primary, tertiary} = Colors;
+const {darkLight, tertiary} = Colors;
 
 function ChatScreen ({ route, navigation }) {
-    const {commentStore, authStore, casterStore} = useStore();
+    const {commentStore, casterStore} = useStore();
     const { id } = route.params;
     const [currentRoomId, setCurrentRoomId] = useState('');
-    const [localUserName, setLocalUserName] = useState('Frederik');
     const [localMessage, setLocalMessage] = useState('');
-    const [test, setTest] = useState(false);
 
-
+    // Function to enter a chat room
     const enterRoom = (id) => {
+        // For future changing
         setCurrentRoomId("ad4cff79-928d-4efc-9e28-a86151a95436");
-        if(authStore.signedIn === false) {
-            navigation.navigate("Login");
-        }
-        else {
-            //casterStore.loadCaster(authStore.user.id).then(setLocalUserName(casterStore.caster.name));
-        }
 
+        // Method to join a chatroom
         commentStore.joinRoom(id, currentRoomId).then(() => {
             navigation.setOptions({ title: commentStore.test2.name });
         });
     }
 
+    // Function to send a message
     const sendMessage = () => {
         const message: messageSent = {
             ChatRoomId: commentStore.test2.id,
@@ -58,7 +53,6 @@ function ChatScreen ({ route, navigation }) {
         commentStore.addComment(message).then(() => {
         });
         setLocalMessage('');
-        console.log(commentStore.comments)
     }
 
     useEffect(() => {
@@ -111,7 +105,6 @@ function ChatScreen ({ route, navigation }) {
                 <PageTitleChat>{commentStore.test2.name}</PageTitleChat>
                 </Test>
             </ChatHeaderContainer>
-
         )
     };
 
@@ -119,7 +112,7 @@ function ChatScreen ({ route, navigation }) {
         return (
             <View>
                 <MessageInput placeholder={"fisk"} value={localMessage} onChangeText={setLocalMessage}></MessageInput>
-                <SendIcon onPress={sendMessage}>
+                <SendIcon onPress={() => sendMessage}>
                     <Ionicons name={"paper-plane-outline"} size={30} color={darkLight} />
                 </SendIcon>
             </View>
@@ -133,9 +126,9 @@ function ChatScreen ({ route, navigation }) {
             <StyledContainerChat>
                 <StatusBar style={"dark"}></StatusBar>
                 <InnerContainer>
-                    <ChatHeader></ChatHeader>
-                    <ChatMessageContainer></ChatMessageContainer>
-                    <MessageInput placeholder={"fisk"} value={localMessage} onChangeText={setLocalMessage}></MessageInput>
+                    <ChatHeader />
+                    <ChatMessageContainer />
+                    <MessageInput placeholder={"Message.."} value={localMessage} onChangeText={setLocalMessage}></MessageInput>
                     <SendIcon onPress={sendMessage}>
                         <Ionicons name={"paper-plane-outline"} size={30} color={darkLight} />
                     </SendIcon>

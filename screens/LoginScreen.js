@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import { StatusBar } from "expo-status-bar";
-
 import {Formik} from "formik";
+import {View} from 'react-native'
+
+// styles
 import {
-    StyledContainer,
-    InnerContainer,
     PageLogo,
     PageTitle,
     SubTitle,
@@ -24,25 +24,21 @@ import {
     TextLinkContent, StyledImageContainer, InnerContainerLogin,
 } from "../components/styles";
 
-import {View} from 'react-native'
-
 // icons
 import {Octicons, Ionicons, Fontisto} from "@expo/vector-icons";
 import KeyBoardAvoidingWrapper from "../components/KeyBoardAvoidingWrapper";
 import {useStore} from "../stores/store";
 
 // colors
-const {brand, darkLight, primary} = Colors;
+const {brand, darkLight} = Colors;
 
 const LoginScreen = () => {
     const { authStore, casterStore } = useStore();
     const [hidePassword, setHidePassword] = useState(true);
 
-
+    // Function to perform login
     const loginRequest = async(user: any) => {
-        console.log(authStore.signedIn);
-        await authStore.attemptLogin2(user).then(
-        );
+        await authStore.attemptLogin(user);
 
         if (authStore.user !== null) {
             console.log("YOU ARE LOGGED IN NOW");
@@ -62,7 +58,7 @@ const LoginScreen = () => {
                 <Formik
                     initialValues={{email: '', password: ''}}
                     onSubmit={(values) => {
-                        loginRequest(values).then(console.log("fisk"));
+                        loginRequest(values);
                     }}
                 >
                     {({handleChange, handleBlur, handleSubmit, values}) => <StyledFormArea>
@@ -110,6 +106,7 @@ const LoginScreen = () => {
     )
 }
 
+// Text input component
 const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword,...props}) => {
     return (
         <View>

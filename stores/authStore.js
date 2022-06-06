@@ -14,20 +14,7 @@ export class AuthStore{
     @observable signedIn: boolean | false;
 
     @action
-    attemptLogin = async (data: loginDto) => {
-        console.log(data);
-        await axios.post("http://10.0.2.2:5000/api/Auth/Login", data).then(function (response) {
-            console.log("AXOIS DIRECT RESPONSE " + response.status);
-            console.log("AXOIS DIRECT RESPONSE " + response.data.email);
-            this.user = response.data;
-            localStorage.setItem("token", this.user.token);
-            console.log("attemptLogin " + this.user.token);
-        });
-        console.log("user within fucntion = " + this.user);
-    }
-
-    @action
-    attemptLogin2 = async (data: loginDto) => {
+    attemptLogin= async (data: loginDto) => {
         const response = await authService.attemptLogin(data);
         runInAction(() => {
             this.user = response.data;
@@ -36,13 +23,6 @@ export class AuthStore{
             }
             console.log(this.user);
         });
-    }
-
-    @action
-    attemptLogin3 = async (data: loginDto) => {
-        const response = await axios.post("http://10.0.2.2:5000/api/Auth/Login", data);
-        this.user = response.data;
-        console.log(this.user);
     }
 
     @action
