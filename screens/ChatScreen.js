@@ -20,6 +20,7 @@ import {
 import KeyBoardAvoidingWrapper from "../components/KeyBoardAvoidingWrapper";
 import {Ionicons, Octicons} from "@expo/vector-icons";
 import {Formik} from "formik";
+import MyTextInput from "../components/login/MyTextInput";
 
 
 // colors
@@ -59,21 +60,6 @@ function ChatScreen ({ route, navigation }) {
         enterRoom(id);
     }, []);
 
-    const listItems = commentStore.chatMessages.map((message: message, index) => (
-        <View style={styles.flexRow} key={index}>
-            <View>
-                <Image
-                    style={styles.message_Image}
-                    source={require('../assets/images/1646754967359.png')}
-                />
-            </View>
-            <View style={styles.flexColumn}>
-                <Text style={styles.message_UserName}>{message.username}</Text>
-                <Text style={styles.message_Text}>{message.text}</Text>
-            </View>
-        </View>
-    ));
-
     const ChatMessage = commentStore.chatMessages.map((message: message, index) => (
             <ChatFrame key={index}>
                 <ProfileImage source={require('../assets/images/1646754967359.png')} />
@@ -108,18 +94,6 @@ function ChatScreen ({ route, navigation }) {
         )
     };
 
-    const MyTextInput = () => {
-        return (
-            <View>
-                <MessageInput placeholder={"fisk"} value={localMessage} onChangeText={setLocalMessage}></MessageInput>
-                <SendIcon onPress={() => sendMessage}>
-                    <Ionicons name={"paper-plane-outline"} size={30} color={darkLight} />
-                </SendIcon>
-            </View>
-        )
-    }
-
-
 
 
     return (
@@ -128,7 +102,13 @@ function ChatScreen ({ route, navigation }) {
                 <InnerContainer>
                     <ChatHeader />
                     <ChatMessageContainer />
-                    <MessageInput placeholder={"Message.."} value={localMessage} onChangeText={setLocalMessage}></MessageInput>
+                    <MyTextInput
+                        icon={"mail"}
+                        placeholder={"Message..."}
+                        placerholderTextColor={darkLight}
+                        onChangeText={setLocalMessage}
+                        value={localMessage}
+                    />
                     <SendIcon onPress={sendMessage}>
                         <Ionicons name={"paper-plane-outline"} size={30} color={darkLight} />
                     </SendIcon>
@@ -136,114 +116,5 @@ function ChatScreen ({ route, navigation }) {
             </StyledContainerChat>
     );
 }
-
-const styles = StyleSheet.create({
-    message_Image: {
-        width: 50,
-        height: 50,
-        marginRight: 15,
-        borderRadius: 30,
-    },
-    message_List: {
-        height: 400,
-        backgroundColor: '#181818',
-    },
-    flexColumn: {
-        flexDirection: 'column',
-    },
-    flexRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: 40,
-        paddingBottom: 20,
-    },
-    message_Text: {
-        color: '#FFFFFF',
-        fontSize: 12,
-        fontFamily: 'Uranium',
-    },
-    message_UserName: {
-        color: '#FFFFFF',
-        fontSize: 15,
-        fontFamily: 'Uranium',
-        fontWeight: 'bold',
-    },
-    sectionContainer: {
-        marginTop: 32,
-        paddingHorizontal: 24,
-    },
-    connectedto: {
-        fontSize: 10,
-        fontStyle: 'italic',
-    },
-    sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-    },
-    highlight: {
-        fontWeight: '700',
-    },
-    fields: {
-        marginTop: 20,
-        paddingLeft: 10,
-        fontSize: 15,
-        height: 40,
-        borderWidth: 1,
-    },
-    sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: 'black',
-    },
-    button: {
-        borderWidth: 2,
-        borderColor: '#89AAFF',
-        width: 109,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 20,
-        marginRight: 20,
-    },
-    buttonText_enabled: {
-        fontSize: 20,
-        color: 'black',
-    },
-    buttonText_disabled: {
-        fontSize: 20,
-        color: '#dfe1e6',
-    },
-    messagelogitem: {
-        backgroundColor: '#f9c2ff',
-        padding: 10,
-        marginVertical: 4,
-        marginHorizontal: 4,
-    },
-    messageList: {
-        marginTop: 90,
-    },
-    test: {
-        backgroundColor: '#181818',
-    },
-    test4: {
-        backgroundColor: '#181818',
-        maxHeight: 300,
-    },
-    test2: {
-        color: '#FFFFFF',
-        fontSize: 25,
-        textAlign: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-        fontFamily: 'StateWideSoft-Bold',
-    },
-    MessageElement__Text: {},
-    MessageElement__Image: {},
-    MessageElement__Username: {},
-    test5: {
-        backgroundColor: "#21FA21",
-    }
-});
 
 export default observer(ChatScreen);

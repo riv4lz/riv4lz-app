@@ -1,10 +1,8 @@
-import { View, Text } from "react-native";
 import type {ChatRoom} from "../stores/chatStore";
 import {useStore} from "../stores/store";
-import React, {useEffect, useState} from "react";
+import React, { useEffect } from "react";
 
 // styles
-
 import {
     ChatRoomContainer,
     ChatRoomName,
@@ -21,14 +19,9 @@ import {
 import { StatusBar } from "expo-status-bar";
 
 function ChatRoomsScreen ({ navigation }) {
-
-    const numbers = ["counter strike", "lol", "wow", "general"];
-    const doubled = numbers.map((name) => console.log(name));
-
     const {commentStore} = useStore();
 
     useEffect(() => {
-        const doubled = numbers.map((name) => console.log(name));
     }, []);
 
 

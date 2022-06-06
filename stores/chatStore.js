@@ -72,7 +72,6 @@ export default class ChatStore {
         this.hubConnection.on('ReceiveMessage', (message: string) => {
             runInAction(() => {
                 this.chatMessages.push(message);
-                this.test2.messages.push(message);
             });
         });
     }
