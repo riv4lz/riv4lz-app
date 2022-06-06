@@ -110,10 +110,7 @@ export default class ChatStore {
     }
 
     joinRoom = async (roomId: string, previousRoomId: string) => {
-        console.log(this.hubConnection.state);
-        console.log("roomid in function" + roomId);
         this.hubConnection.invoke('JoinRoom', roomId, previousRoomId).then(() => {
-            console.log("wdawdwdadawpdawpd" + this.test2);
         })
             .catch(error => console.log('Error sending message', error));
     }
