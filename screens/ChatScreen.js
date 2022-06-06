@@ -5,7 +5,7 @@ import {Image, StyleSheet, Text, View} from "react-native";
 import * as React from "react";
 import { v4 } from 'uuid';
 import 'react-native-get-random-values';
-import type {messageSent} from "../stores/commentStore";
+import type {messageSent} from "../stores/chatStore";
 import {StatusBar} from "expo-status-bar";
 import {
     BackIcon,
@@ -38,14 +38,14 @@ function ChatScreen ({ route, navigation }) {
 
         // Method to join a chatroom
         commentStore.joinRoom(id, currentRoomId).then(() => {
-            navigation.setOptions({ title: commentStore.test2.name });
+            navigation.setOptions({ title: commentStore.currentRoom.name });
         });
     }
 
     // Function to send a message
     const sendMessage = () => {
         const message: messageSent = {
-            ChatRoomId: commentStore.test2.id,
+            ChatRoomId: commentStore.currentRoom.id,
             Id: v4(),
             Text: localMessage,
             Username: casterStore.caster.name,
@@ -59,7 +59,7 @@ function ChatScreen ({ route, navigation }) {
         enterRoom(id);
     }, []);
 
-    const listItems = commentStore.test2.messages.map((message: message, index) => (
+    const listItems = commentStore.chatMessages.map((message: message, index) => (
         <View style={styles.flexRow} key={index}>
             <View>
                 <Image
@@ -74,7 +74,7 @@ function ChatScreen ({ route, navigation }) {
         </View>
     ));
 
-    const ChatMessage = commentStore.test2.messages.map((message: message, index) => (
+    const ChatMessage = commentStore.chatMessages.map((message: message, index) => (
             <ChatFrame key={index}>
                 <ProfileImage source={require('../assets/images/1646754967359.png')} />
                 <ChatInnerFrame>
@@ -102,7 +102,7 @@ function ChatScreen ({ route, navigation }) {
                     <Ionicons name={"arrow-back-outline"} size={30} color={tertiary} />
                 </BackIcon>
                 <Test>
-                <PageTitleChat>{commentStore.test2.name}</PageTitleChat>
+                <PageTitleChat>{commentStore.currentRoom.name}</PageTitleChat>
                 </Test>
             </ChatHeaderContainer>
         )

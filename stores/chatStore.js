@@ -11,7 +11,7 @@ export interface test {
     previousRoomId: string,
 }
 
-export interface room {
+export interface Room {
     id: string,
     name: string,
     messages: {text: string, username: string}[];
@@ -29,16 +29,14 @@ export interface messageSent {
     Username: string
 }
 
-export default class CommentStore{
+export default class ChatStore {
     @observable chatRooms: ChatRoom[] = [];
-    @observable chatRoom: ChatRoom | undefined;
-    @observable comments: string[] = [];
+    @observable chatMessages: string[] = [];
+    @observable currentRoom: Room;
     hubConnection: HubConnection | null = null;
     editMode = false;
     loading = false;
     loadingInitial = false;
-    @observable test: any = [];
-    @observable test2: any = [];
 
     constructor() {
         makeAutoObservable(this);
@@ -57,29 +55,24 @@ export default class CommentStore{
         this.hubConnection.start().catch(error =>
             console.log('Error establishing the connection', error));
 
-        this.hubConnection.on('LoadMessages', (comments: room) => {
+        this.hubConnection.on('LoadMessages', (room: Room) => {
             console.log("connnection state " + this.hubConnection.state);
             runInAction(() => {
-                this.test2 = comments;
-                console.log(this.test2);
+                this.currentRoom = room;
+                this.chatMessages = room.messages;
             });
         });
 
-        this.hubConnection.on('LoadRooms', (chatRoom: ChatRoom) => {
+        this.hubConnection.on('LoadRooms', (chatRooms: ChatRoom) => {
             runInAction(() => {
-                console.log("loaded rooms ");
-                console.log("test is equals to ");
-                if (this.chatRooms.length <= 0) {
-                    this.chatRooms.push(chatRoom);
-                    this.test = chatRoom;
-                }
+                this.chatRooms = chatRooms;
             });
         });
 
-        this.hubConnection.on('ReceiveMessage', (comment: string) => {
+        this.hubConnection.on('ReceiveMessage', (message: string) => {
             runInAction(() => {
-                this.comments.push(comment);
-                this.test2.messages.push(comment);
+                this.chatMessages.push(message);
+                this.test2.messages.push(message);
             });
         });
     }

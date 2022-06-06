@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import type {ChatRoom} from "../stores/commentStore";
+import type {ChatRoom} from "../stores/chatStore";
 import {useStore} from "../stores/store";
 import React, {useEffect, useState} from "react";
 
@@ -31,7 +31,9 @@ function ChatRoomsScreen ({ navigation }) {
         const doubled = numbers.map((name) => console.log(name));
     }, []);
 
-    const roomsList = commentStore.test.map((chatRoom: ChatRoom) => (
+
+    // Creating the
+    const roomsList = commentStore.chatRooms.map((chatRoom: ChatRoom) => (
         <ChatRoomContainer key={chatRoom.id}>
             <RoomButtons onPress={() => navigation.navigate('Chat2', {
                 id: chatRoom.id,

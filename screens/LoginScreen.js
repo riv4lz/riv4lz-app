@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from "expo-status-bar";
-import {Formik} from "formik";
-import {View} from 'react-native'
+import { Formik } from "formik";
 
 // styles
 import {
@@ -9,10 +8,6 @@ import {
     PageTitle,
     SubTitle,
     StyledFormArea,
-    LeftIcon,
-    RightIcon,
-    StyledTextInput,
-    StyledInputLabel,
     StyledButton,
     ButtonText,
     Colors,
@@ -25,18 +20,18 @@ import {
 } from "../components/styles";
 
 // icons
-import {Octicons, Ionicons, Fontisto} from "@expo/vector-icons";
 import KeyBoardAvoidingWrapper from "../components/KeyBoardAvoidingWrapper";
-import {useStore} from "../stores/store";
+import { useStore } from "../stores/store";
+import MyTextInput from "../components/login/MyTextInput";
 
 // colors
-const {brand, darkLight} = Colors;
+const { darkLight } = Colors;
 
 const LoginScreen = () => {
     const { authStore, casterStore } = useStore();
     const [hidePassword, setHidePassword] = useState(true);
 
-    // Function to perform login
+    // Function to perform login request
     const loginRequest = async(user: any) => {
         await authStore.attemptLogin(user);
 
@@ -105,23 +100,4 @@ const LoginScreen = () => {
         </KeyBoardAvoidingWrapper>
     )
 }
-
-// Text input component
-const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword,...props}) => {
-    return (
-        <View>
-            <LeftIcon>
-                <Octicons name={icon} size={30} color={brand} />
-            </LeftIcon>
-            <StyledInputLabel>{label}</StyledInputLabel>
-            <StyledTextInput {...props} />
-            {isPassword && (
-                <RightIcon onPress={() => setHidePassword(!hidePassword)}>
-                    <Ionicons name={hidePassword ? "md-eye-off" : "md-eye"} size={30} color={darkLight} />
-                </RightIcon>
-            )}
-        </View>
-    )
-}
-
 export default LoginScreen;
