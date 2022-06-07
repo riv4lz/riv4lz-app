@@ -94,7 +94,7 @@ export default class ChatStore {
     }
 
     loadMessages = async () => {
-        console.log("fisk 14");
+        console.log("Attempting to load messages");
         this.loadingInitial = true;
         this.hubConnection?.invoke('LoadMessages')
             .then(() => {

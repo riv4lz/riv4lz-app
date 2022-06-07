@@ -21,14 +21,12 @@ export class AuthStore{
             if(this.user) {
                 this.signedIn = true;
             }
-            console.log(this.user);
         });
     }
 
     @action
     getCurrentUser = () => {
         authService.getCurrentUser().then((response: any) => {
-            console.log("getCurrentuser" + response);
             this.user = response.data;
         })
     }

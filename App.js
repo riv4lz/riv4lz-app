@@ -26,10 +26,7 @@ function App() {
 
 
     async function test5() {
-        await when(() => authStore.signedIn).then(
-            console.log("fiskehandler")
-        )
-        console.log("fiskehandler");
+        await when(() => authStore.signedIn).then()
     }
 
     let test3 = () => {
@@ -46,8 +43,6 @@ function App() {
             setSignedIn(true);
         }
         commentStore.createHubConnection();
-        console.log(commentStore.hubConnection.state);
-        console.log("connection in app done")
     }, [authStore.user]);
 
     const MyTheme = {

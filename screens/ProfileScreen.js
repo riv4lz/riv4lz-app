@@ -52,7 +52,6 @@ function ProfileScreen({ navigation }) {
             imageType: 0,
         }
         await casterStore.postImage(img).then(() => {
-            console.log(casterStore.caster);
             setImageUrlCaster(casterStore.caster.profileImageUrl);
         }).catch((error) => console.log( error.response.request._response ) );
     }
@@ -118,7 +117,6 @@ function ProfileScreen({ navigation }) {
             }).then(async r => {
                 let data = await r.json()
                 setImageUrl1(data.secure_url)
-                console.log(data.secure_url)
                 return data.secure_url
             }).catch(err=>console.log(err))
         }

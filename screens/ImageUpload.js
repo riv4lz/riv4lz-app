@@ -10,7 +10,6 @@ export default class ImageUpload extends Component {
         image: null,
     };
 
-
     componentDidMount() {
         this.connectToStores();
     }
@@ -18,7 +17,6 @@ export default class ImageUpload extends Component {
     connectToStores = () => {
         let { casterStore, authStore } = useStore();
     }
-
 
     pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -48,7 +46,6 @@ export default class ImageUpload extends Component {
                 method: 'POST',
             }).then(async r => {
                 let data = await r.json()
-                console.log(data.secure_url)
                 return data.secure_url
             }).catch(err=>console.log(err))
         }
@@ -83,7 +80,6 @@ export default class ImageUpload extends Component {
                 method: 'POST',
             }).then(async r => {
                 let data = await r.json()
-                console.log(data.secure_url)
                 return data.secure_url
             }).catch(err=>console.log(err))
         }
