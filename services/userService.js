@@ -12,8 +12,8 @@ class UserService {
     async create(data: User) {
         return http.post<User>("/Profile/RegisterProfile", data);
     }
-    update(data: User) {
-        return http.put<User>(`/Profile/UpdateProfile/`, data);
+    async update(data: User) {
+        return http.put<User>(`/Profile/UpdateProfile/`, data).catch(err => console.log(err.message));
     }
     delete(id: any) {
         return http.delete<any>(`/Profile/DeleteProfile/${id}`);

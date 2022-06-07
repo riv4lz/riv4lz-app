@@ -11,6 +11,7 @@ import React from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import {observer} from "mobx-react";
 import {InnerContainer, PageTitle, StyledContainer, SubTitle} from "../components/styles";
+import {runInAction} from "mobx";
 
 
 function ProfileScreen() {
@@ -21,6 +22,7 @@ function ProfileScreen() {
     const [test, setTest] = useState(null);
     const [showState, setShowState] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const [profileImageUrl, setProfileImageUrl] = useState('');
 
     useEffect(() => {
         //userStore.loadUser(authStore.user.id);
@@ -28,15 +30,28 @@ function ProfileScreen() {
 
 
     const test1 = async () => {
-        await pickImageCamera();
-        await sendImage();
-        setShowState(false);
+        await pickImageCamera().then(updateInfo());
     }
 
     const test2 = async () => {
         await pickImageCamera();
         await sendImage();
         await sendImage();
+    }
+
+    const updateInfo = async () => {
+
+        runInAction(() => {
+        userStore.user.name = userStore.user.name ;
+        userStore.user.description = userStore.user.description ;
+        userStore.user.facebookUrl = userStore.user.facebookUrl;
+        userStore.user.twitterUrl = userStore.user.twitterUrl;
+        userStore.user.discordUrl = userStore.user.discordUrl;
+        userStore.user.twitchUrl = userStore.user.twitchUrl;
+        userStore.user.profileImageUrl = profileImageUrl;
+        userStore.user.bannerImageUrl = userStore.user.bannerImageUrl;
+        userStore.updateUserProfile(userStore.user);
+        })
     }
 
     const sendImage = async () => {
@@ -75,11 +90,10 @@ function ProfileScreen() {
                 method: 'POST',
             }).then(async r => {
                 let data = await r.json()
-                setImageUrl1(data.secure_url)
-                await console.log(data.secure_url)
-
+                await setProfileImageUrl(data.secure_url)
                 return data.secure_url
-                setModalVisible(!modalVisible);
+                console.log("fisk");
+                updateInfo().then(console.log(userStore.user));
             }).catch(err=>console.log(err))
         }
 
@@ -109,8 +123,10 @@ function ProfileScreen() {
                 method: 'POST',
             }).then(async r => {
                 let data = await r.json()
-                setImageUrl1(data.secure_url)
+                await setProfileImageUrl(data.secure_url)
                 return data.secure_url
+
+                updateInfo().then(console.log(userStore.user));
             }).catch(err=>console.log(err))
         }
     }
@@ -130,7 +146,7 @@ function ProfileScreen() {
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
                             <Text style={styles.modalText}>Choose type</Text>
-                            <Button title={"Media"} onPress={()=>pickImage()} style={{marginTop: 10}}></Button>
+                            <Button title={"Media"} onPress={()=>test1()} style={{marginTop: 10}}></Button>
                             <Button title={"Camera"} onPress={()=>pickImageCamera()} style={{marginTop: 10}}></Button>
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}
@@ -149,7 +165,7 @@ function ProfileScreen() {
                             <Image source={{uri: userStore.user.profileImageUrl}} style={{width: 200, height: 200, borderRadius: 100, alignSelf:'center'}}/>
                     </View>
                 </TouchableOpacity>
-                <Button title={"UPLOAD IMAGE"} onPress={()=>sendImage()} style={{marginTop: 10}}></Button>
+                <Button title={"UPLOAD IMAGE"} onPress={()=>updateInfo()} style={{marginTop: 10}}></Button>
                 <PageTitle>{userStore.user.name}</PageTitle>
                 <SubTitle>{userStore.user.description}</SubTitle>
             </InnerContainer>
