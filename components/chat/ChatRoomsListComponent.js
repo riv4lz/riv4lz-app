@@ -1,4 +1,3 @@
-import { View } from "react-native";
 import type { ChatRoom } from "../../stores/chatStore";
 import React from "react";
 import { useStore } from "../../stores/store";
@@ -13,7 +12,7 @@ import {
 } from "../styles";
 import {useNavigation} from "@react-navigation/native";
 
-const ChatRoomsList = () => {
+const ChatRoomsListComponent = () => {
     const { chatStore } = useStore();
     const navigation = useNavigation();
 
@@ -34,4 +33,4 @@ const ChatRoomsList = () => {
     )
 }
 
-export default ChatRoomsList;
+export default ChatRoomsListComponent;

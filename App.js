@@ -13,7 +13,7 @@ import 'localstorage-polyfill';
 import LoginScreen from "./screens/LoginScreen";
 import TestScreen from "./screens/TestScreen";
 import { observer } from "mobx-react";
-import ChatRoomsList from "./components/chat/ChatRoomsList";
+import ChatRoomsList from "./components/chat/ChatRoomsListComponent";
 
 const Tab = createBottomTabNavigator();
 

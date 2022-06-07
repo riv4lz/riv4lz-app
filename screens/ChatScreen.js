@@ -78,11 +78,6 @@ function ChatScreen ({ route, navigation }) {
         )
     };
 
-    const GoBack = () => {
-        navigation.navigate("ChatRooms");
-    }
-
-
     const ChatHeader = () => {
         return (
             <ChatHeaderContainer>
