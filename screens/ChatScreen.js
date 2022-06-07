@@ -20,6 +20,7 @@ import KeyBoardAvoidingWrapper from "../components/KeyBoardAvoidingWrapper";
 import {Ionicons, Octicons} from "@expo/vector-icons";
 import {Formik} from "formik";
 import MyTextInput from "../components/login/MyTextInput";
+import ProfileImagePlaceholder from "../assets/images/Temp/ProfileImagePlaceholder.jpg"
 
 
 // colors
@@ -63,7 +64,7 @@ function ChatScreen ({ route, navigation }) {
 
     const ChatMessage = chatStore.chatMessages.map((message: message, index) => (
             <ChatFrame key={index}>
-                <ProfileImage source={{uri: message.profileImageUrl}} />
+                <ProfileImage source={{uri: message.profileImageUrl !== '' ? message.profileImageUrl : "../assets/images/Temp/ProfileImagePlaceholder.jpg"}} />
                 <ChatInnerFrame>
                     <UserName>{message.username}</UserName>
                     <Message>{message.text}</Message>

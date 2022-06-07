@@ -128,7 +128,6 @@ function AuthView ({ navigation }) {
             }}>
             <Stack.Screen name="ChatRoomScreen" component={ChatRoomsScreen} />
             <Stack.Screen name="ChatScreen" component={ChatScreen} />
-            <Stack.Screen name="ChatRoomList" component={ChatRoomsList} />
         </Stack.Navigator>
     );
 }

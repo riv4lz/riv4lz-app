@@ -11,9 +11,11 @@ import {
     RoomButtons,
     RoomButtonsImage,
 } from "../styles";
+import {useNavigation} from "@react-navigation/native";
 
-const ChatRoomsList = ({ navigation }) => {
+const ChatRoomsList = () => {
     const { chatStore } = useStore();
+    const navigation = useNavigation();
 
     return (
         <InnerContainerGrid>
