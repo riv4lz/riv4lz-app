@@ -1,49 +1,30 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
 import { NavigationContainer, DefaultTheme  } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from "./screens/HomeScreen";
 import ChatScreen from "./screens/ChatScreen";
-import {useStore} from "./stores/store";
-import {useEffect, useState} from "react";
+import { useStore } from "./stores/store";
+import { useEffect } from "react";
 import ChatRoomsScreen from "./screens/ChatRoomsScreen";
-import TitleComponent from "./components/TitleComponent";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from "./screens/ProfileScreen";
 import 'localstorage-polyfill';
-import {autorun, observe, when} from "mobx";
 import LoginScreen from "./screens/LoginScreen";
 import TestScreen from "./screens/TestScreen";
-import {observer} from "mobx-react";
+import { observer } from "mobx-react";
+import ChatRoomsList from "./components/chat/ChatRoomsList";
 
 const Tab = createBottomTabNavigator();
 
 
 function App() {
     const {chatStore, authStore} = useStore();
-    const [signedIn, setSignedIn] = useState(false);
-
-
-    async function test5() {
-        await when(() => authStore.signedIn).then()
-    }
-
-    let test3 = () => {
-        setSignedIn(true);
-    }
-
-    let test4 = () => {
-        setSignedIn(false);
-    }
 
 
     useEffect(() => {
-        if (localStorage.getItem("token")) {
-            setSignedIn(true);
-        }
         chatStore.createHubConnection();
-    }, [authStore.user]);
+    }, );
 
     const MyTheme = {
         ...DefaultTheme,
@@ -145,8 +126,9 @@ function AuthView ({ navigation }) {
                 headerShown: false,
                 cardStyle: { backgroundColor: '#181818' }
             }}>
-            <Stack.Screen name="Chat1" component={ChatRoomsScreen} />
-            <Stack.Screen name="Chat2" component={ChatScreen} />
+            <Stack.Screen name="ChatRoomScreen" component={ChatRoomsScreen} />
+            <Stack.Screen name="ChatScreen" component={ChatScreen} />
+            <Stack.Screen name="ChatRoomList" component={ChatRoomsList} />
         </Stack.Navigator>
     );
 }

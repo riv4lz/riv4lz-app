@@ -85,7 +85,7 @@ function ChatScreen ({ route, navigation }) {
     const ChatHeader = () => {
         return (
             <ChatHeaderContainer>
-                <BackIcon onPress={() => navigation.navigate("Chat1")}>
+                <BackIcon onPress={() => navigation.navigate("ChatRoomScreen")}>
                     <Ionicons name={"arrow-back-outline"} size={30} color={tertiary} />
                 </BackIcon>
                 <Test>
