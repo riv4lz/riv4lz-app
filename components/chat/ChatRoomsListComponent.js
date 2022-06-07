@@ -12,6 +12,8 @@ import {
 } from "../styles";
 import {useNavigation} from "@react-navigation/native";
 
+
+
 const ChatRoomsListComponent = () => {
     const { chatStore } = useStore();
     const navigation = useNavigation();

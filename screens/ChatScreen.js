@@ -1,36 +1,38 @@
-import {observer} from "mobx-react";
-import {useStore} from "../stores/store";
-import {useEffect, useState} from "react";
+import { observer } from "mobx-react";
+import { useStore } from "../stores/store";
+import { useEffect, useState } from "react";
 import * as React from "react";
 import { v4 } from 'uuid';
 import 'react-native-get-random-values';
-import type {messageSent} from "../stores/chatStore";
-import {StatusBar} from "expo-status-bar";
-import {
-    BackIcon,
-    ChatContainer,
-    ChatFrame, ChatHeaderContainer, ChatInnerFrame, Colors,
-    InnerContainer, LeftIcon,
-    Message, MessageInput, PageTitle, PageTitleChat,
-    ProfileImage, RightIcon, SendIcon,
-    StyledContainer, StyledContainerChat, StyledFormArea, StyledInputLabel, StyledTextInput, Test,
-    UserName,
-} from "../components/styles";
-import KeyBoardAvoidingWrapper from "../components/KeyBoardAvoidingWrapper";
-import {Ionicons, Octicons} from "@expo/vector-icons";
-import {Formik} from "formik";
+import type { messageSent } from "../stores/chatStore";
+import { StatusBar } from "expo-status-bar";
+import { Ionicons } from "@expo/vector-icons";
 import MyTextInput from "../components/login/MyTextInput";
-import ProfileImagePlaceholder from "../assets/images/Temp/ProfileImagePlaceholder.jpg"
+import ChatHeaderComponent from "../components/chat/ChatHeader";
+import ChatMessageContainerComponent from "../components/chat/ChatMessageContainerComponent";
+
+// styles
+import {
+    Colors,
+    InnerContainer,
+    SendIcon,
+    StyledContainerChat,
+} from "../components/styles";
 
 
 // colors
-const {darkLight, tertiary} = Colors;
+const { darkLight } = Colors;
 
 function ChatScreen ({ route, navigation }) {
     const { chatStore , userStore } = useStore();
     const { id } = route.params;
     const [currentRoomId, setCurrentRoomId] = useState('');
     const [localMessage, setLocalMessage] = useState('');
+
+    useEffect(() => {
+        enterRoom(id);
+    }, []);
+
 
     // Function to enter a chat room
     const enterRoom = (id) => {
@@ -58,47 +60,12 @@ function ChatScreen ({ route, navigation }) {
         setLocalMessage('');
     }
 
-    useEffect(() => {
-        enterRoom(id);
-    }, []);
-
-    const ChatMessage = chatStore.chatMessages.map((message: message, index) => (
-            <ChatFrame key={index}>
-                <ProfileImage source={{uri: message.profileImageUrl !== '' ? message.profileImageUrl : "../assets/images/Temp/ProfileImagePlaceholder.jpg"}} />
-                <ChatInnerFrame>
-                    <UserName>{message.username}</UserName>
-                    <Message>{message.text}</Message>
-                </ChatInnerFrame>
-            </ChatFrame>
-    ));
-
-    const ChatMessageContainer = () => {
-        return (
-            <ChatContainer>{ChatMessage}</ChatContainer>
-        )
-    };
-
-    const ChatHeader = () => {
-        return (
-            <ChatHeaderContainer>
-                <BackIcon onPress={() => navigation.navigate("ChatRoomScreen")}>
-                    <Ionicons name={"arrow-back-outline"} size={30} color={tertiary} />
-                </BackIcon>
-                <Test>
-                <PageTitleChat>{chatStore.currentRoom.name}</PageTitleChat>
-                </Test>
-            </ChatHeaderContainer>
-        )
-    };
-
-
-
     return (
             <StyledContainerChat>
                 <StatusBar style={"dark"}></StatusBar>
                 <InnerContainer>
-                    <ChatHeader />
-                    <ChatMessageContainer />
+                    <ChatHeaderComponent />
+                    <ChatMessageContainerComponent />
                     <MyTextInput
                         icon={"mail"}
                         placeholder={"Message..."}

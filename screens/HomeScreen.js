@@ -2,7 +2,7 @@ import 'localstorage-polyfill';
 import {InnerContainer, PageLogo, StyledContainer} from "../components/styles";
 import {StatusBar} from "expo-status-bar";
 
-function HomeScreen({ navigation }) {
+function HomeScreen() {
 
     return (
         <StyledContainer>
