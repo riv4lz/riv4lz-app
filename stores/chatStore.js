@@ -26,7 +26,9 @@ export interface messageSent {
     ChatRoomId: string,
     Id: string,
     Text: string,
-    Username: string
+    Username: string,
+    UserId: string,
+    ProfileImageUrl?: string,
 }
 
 export default class ChatStore {

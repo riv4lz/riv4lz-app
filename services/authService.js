@@ -1,5 +1,5 @@
-import http from "../http-cmmon";
-import type {User} from "../dtos/userDTO";
+import http from "../http-common";
+import type { User } from "../interfaces/userInterface";
 
 export interface loginDto {
     email: string;

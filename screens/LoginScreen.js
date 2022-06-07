@@ -28,7 +28,7 @@ import MyTextInput from "../components/login/MyTextInput";
 const { darkLight } = Colors;
 
 const LoginScreen = () => {
-    const { authStore, casterStore } = useStore();
+    const { authStore, userStore } = useStore();
     const [hidePassword, setHidePassword] = useState(true);
 
     // Function to perform login request
@@ -36,7 +36,8 @@ const LoginScreen = () => {
         await authStore.attemptLogin(user);
 
         if (authStore.user !== null) {
-            await casterStore.loadCaster(authStore.user.id).then(console.log("caster is now loaded"));
+            console.log(authStore.user.id);
+            await userStore.loadUser(authStore.user.id).then(console.log(userStore.user));
         }
     }
 

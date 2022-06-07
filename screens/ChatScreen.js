@@ -1,7 +1,6 @@
 import {observer} from "mobx-react";
 import {useStore} from "../stores/store";
 import {useEffect, useState} from "react";
-import {Image, StyleSheet, Text, View} from "react-native";
 import * as React from "react";
 import { v4 } from 'uuid';
 import 'react-native-get-random-values';

@@ -2,7 +2,7 @@ import {makeAutoObservable, observable, action, runInAction} from "mobx";
 import authService, {loginDto} from "../services/authService";
 import axios from "axios";
 import 'localstorage-polyfill';
-import type {User} from "../dtos/userDTO";
+import type {User} from "../interfaces/userInterface";
 
 
 export class AuthStore{

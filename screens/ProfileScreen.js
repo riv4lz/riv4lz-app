@@ -13,18 +13,20 @@ import * as ImagePicker from 'expo-image-picker';
 import {observer} from "mobx-react";
 import ImageUpload from "./ImageUpload";
 import {InnerContainer, PageTitle, StyledContainer, SubTitle} from "../components/styles";
+import {action} from "mobx";
 
 export const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function ProfileScreen({ navigation }) {
     const [image, setImage] = useState(null);
     const [imageUrl1, setImageUrl1] = useState(null);
-    const { casterStore, authStore } = useStore();
+    const { userStore, authStore } = useStore();
     const [imageUrlCaster, setImageUrlCaster] = useState(null);
     const [test, setTest] = useState(null);
+    const [showState, setShowState] = useState(false);
 
     useEffect(() => {
-        casterStore.loadCaster(authStore.user.id);
+        //userStore.loadUser(authStore.user.id);
     });
 
     const imgTest: ImageUpload = {
@@ -36,6 +38,7 @@ function ProfileScreen({ navigation }) {
     const test1 = async () => {
         await pickImageCamera();
         await sendImage();
+        setShowState(false);
     }
 
     const test2 = async () => {
@@ -44,16 +47,10 @@ function ProfileScreen({ navigation }) {
         await sendImage();
     }
 
-
     const sendImage = async () => {
-        const img: ImageUpload = {
-            userId: authStore.user.id,
-            imageUrl: imageUrl1,
-            imageType: 0,
-        }
-        await casterStore.postImage(img).then(() => {
-            setImageUrlCaster(casterStore.caster.profileImageUrl);
-        }).catch((error) => console.log( error.response.request._response ) );
+        userStore.user.profileImageUrl = imageUrl1;
+        userStore.updateUserProfile(userStore.user);
+        setShowState(true);
     }
 
     const pickImage = async () => {
@@ -126,17 +123,20 @@ function ProfileScreen({ navigation }) {
         <StyledContainer>
             <InnerContainer>
                 <TouchableOpacity onPress={()=>test1()} style={{width: 200, alignSelf: 'center'}}>
+                    {showState ?
+                        <View></View> : null
+                    }
                     <View style={{backgroundColor:'transparent'}}>
                         {image?
-                            <Image source={{uri: casterStore.caster.profileImageUrl !== undefined ? casterStore.caster?.profileImageUrl : 'https://i.imgur.com/sH2IN1A_d.webp?maxwidth=760&fidelity=grand'}} style={{width: 200, height: 200, borderRadius: 100, alignSelf:'center'}}/>
+                            <Image source={{uri: userStore.user.profileImageUrl}} style={{width: 200, height: 200, borderRadius: 100, alignSelf:'center'}}/>
                             :
                             <View style={{ backgroundColor: 'grey',width: 200, height: 200, borderRadius: 100}}/>
                         }
                     </View>
                 </TouchableOpacity>
                 <Button title={"UPLOAD IMAGE"} onPress={()=>sendImage()} style={{marginTop: 10}}></Button>
-                <PageTitle>{casterStore.caster.name}</PageTitle>
-                <SubTitle>{casterStore.caster.description}</SubTitle>
+                <PageTitle>{userStore.user.name}</PageTitle>
+                <SubTitle>{userStore.user.description}</SubTitle>
             </InnerContainer>
         </StyledContainer>
     );

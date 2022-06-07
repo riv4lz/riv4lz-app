@@ -2,19 +2,19 @@ import ChatStore from "./chatStore";
 
 import React, {createContext, useContext} from "react";
 import {AuthStore} from "./authStore";
-import {CasterStore} from "./casterStore";
+import {UserStore} from "./userStore";
 
 
 type Store = {
     commentStore: ChatStore;
     authStore: AuthStore;
-    casterStore: CasterStore;
+    userStore: UserStore;
 }
 
 export const store: Store = {
     commentStore: new ChatStore(),
     authStore: new AuthStore(),
-    casterStore: new CasterStore(),
+    userStore: new UserStore(),
 };
 
 export const StoreContext = createContext(store);
