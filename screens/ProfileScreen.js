@@ -15,7 +15,6 @@ import ImageUpload from "./ImageUpload";
 import {InnerContainer, PageTitle, StyledContainer, SubTitle} from "../components/styles";
 import {action} from "mobx";
 
-export const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function ProfileScreen({ navigation }) {
     const [image, setImage] = useState(null);
@@ -50,6 +49,7 @@ function ProfileScreen({ navigation }) {
     const sendImage = async () => {
         userStore.user.profileImageUrl = imageUrl1;
         userStore.updateUserProfile(userStore.user);
+        console.log("TETSTAERWEAWEWADAD" + userStore.user.profileImageUrl);
         setShowState(true);
     }
 
@@ -127,11 +127,7 @@ function ProfileScreen({ navigation }) {
                         <View></View> : null
                     }
                     <View style={{backgroundColor:'transparent'}}>
-                        {image?
                             <Image source={{uri: userStore.user.profileImageUrl}} style={{width: 200, height: 200, borderRadius: 100, alignSelf:'center'}}/>
-                            :
-                            <View style={{ backgroundColor: 'grey',width: 200, height: 200, borderRadius: 100}}/>
-                        }
                     </View>
                 </TouchableOpacity>
                 <Button title={"UPLOAD IMAGE"} onPress={()=>sendImage()} style={{marginTop: 10}}></Button>

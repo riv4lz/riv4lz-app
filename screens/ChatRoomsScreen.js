@@ -19,14 +19,14 @@ import {
 import { StatusBar } from "expo-status-bar";
 
 function ChatRoomsScreen ({ navigation }) {
-    const {commentStore} = useStore();
+    const { chatStore } = useStore();
 
     useEffect(() => {
     }, []);
 
 
     // Creating the
-    const roomsList = commentStore.chatRooms.map((chatRoom: ChatRoom) => (
+    const roomsList = chatStore.chatRooms.map((chatRoom: ChatRoom) => (
         <ChatRoomContainer key={chatRoom.id}>
             <RoomButtons onPress={() => navigation.navigate('Chat2', {
                 id: chatRoom.id,

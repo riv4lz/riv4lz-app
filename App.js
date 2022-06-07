@@ -21,7 +21,7 @@ const Tab = createBottomTabNavigator();
 
 
 function App() {
-    const {commentStore, authStore} = useStore();
+    const {chatStore, authStore} = useStore();
     const [signedIn, setSignedIn] = useState(false);
 
 
@@ -42,7 +42,7 @@ function App() {
         if (localStorage.getItem("token")) {
             setSignedIn(true);
         }
-        commentStore.createHubConnection();
+        chatStore.createHubConnection();
     }, [authStore.user]);
 
     const MyTheme = {

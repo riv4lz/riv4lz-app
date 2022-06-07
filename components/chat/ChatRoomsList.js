@@ -22,7 +22,7 @@ import { StatusBar } from "expo-status-bar";
 
 function ChatRoomsList ({ navigation }) {
 
-    const {commentStore} = useStore();
+    const { chatStore } = useStore();
 
     const roomsList = commentStore.test.map((chatRoom: ChatRoom) => (
         <ChatRoomContainer key={chatRoom.id}>

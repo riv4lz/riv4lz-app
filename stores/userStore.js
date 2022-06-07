@@ -32,7 +32,7 @@ export class UserStore {
     }
 
     @action
-    loadUser = async (id: any) => {
+    loadUser = async (id: string) => {
         const response = await userService.get(id)
         this.user = response.data;
         console.log(this.user);
@@ -52,7 +52,7 @@ export class UserStore {
 
     @action
     updateUserProfile = (user: User) => {
-        userService.update(user)
+        userService.update(user).then(console.log("Profile succesfully updated"))
     }
 
     constructor() {

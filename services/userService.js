@@ -13,7 +13,7 @@ class UserService {
         return http.post<User>("/Profile/RegisterProfile", data);
     }
     update(data: User) {
-        return http.put<any>(`/Profile/UpdateProfile/`, data);
+        return http.put<User>(`/Profile/UpdateProfile/`, data);
     }
     delete(id: any) {
         return http.delete<any>(`/Profile/DeleteProfile/${id}`);

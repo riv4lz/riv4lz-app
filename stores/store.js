@@ -6,13 +6,13 @@ import {UserStore} from "./userStore";
 
 
 type Store = {
-    commentStore: ChatStore;
+    chatStore: ChatStore;
     authStore: AuthStore;
     userStore: UserStore;
 }
 
 export const store: Store = {
-    commentStore: new ChatStore(),
+    chatStore: new ChatStore(),
     authStore: new AuthStore(),
     userStore: new UserStore(),
 };

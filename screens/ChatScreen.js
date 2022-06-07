@@ -26,7 +26,7 @@ import MyTextInput from "../components/login/MyTextInput";
 const {darkLight, tertiary} = Colors;
 
 function ChatScreen ({ route, navigation }) {
-    const {commentStore, casterStore} = useStore();
+    const { chatStore , userStore } = useStore();
     const { id } = route.params;
     const [currentRoomId, setCurrentRoomId] = useState('');
     const [localMessage, setLocalMessage] = useState('');
@@ -37,20 +37,22 @@ function ChatScreen ({ route, navigation }) {
         setCurrentRoomId("ad4cff79-928d-4efc-9e28-a86151a95436");
 
         // Method to join a chatroom
-        commentStore.joinRoom(id, currentRoomId).then(() => {
-            navigation.setOptions({ title: commentStore.currentRoom.name });
+        chatStore.joinRoom(id, currentRoomId).then(() => {
+            navigation.setOptions({ title: chatStore.currentRoom.name });
         });
     }
 
     // Function to send a message
     const sendMessage = () => {
         const message: messageSent = {
-            ChatRoomId: commentStore.currentRoom.id,
+            ChatRoomId: chatStore.currentRoom.id,
             Id: v4(),
             Text: localMessage,
-            Username: casterStore.caster.name,
+            Username: userStore.user.name,
+            userId: userStore.user.id,
+            profileImageUrl: userStore.user.profileImageUrl,
         }
-        commentStore.addComment(message).then(() => {
+        chatStore.addComment(message).then(() => {
         });
         setLocalMessage('');
     }
@@ -59,9 +61,9 @@ function ChatScreen ({ route, navigation }) {
         enterRoom(id);
     }, []);
 
-    const ChatMessage = commentStore.chatMessages.map((message: message, index) => (
+    const ChatMessage = chatStore.chatMessages.map((message: message, index) => (
             <ChatFrame key={index}>
-                <ProfileImage source={require('../assets/images/1646754967359.png')} />
+                <ProfileImage source={{uri: message.profileImageUrl}} />
                 <ChatInnerFrame>
                     <UserName>{message.username}</UserName>
                     <Message>{message.text}</Message>
@@ -87,7 +89,7 @@ function ChatScreen ({ route, navigation }) {
                     <Ionicons name={"arrow-back-outline"} size={30} color={tertiary} />
                 </BackIcon>
                 <Test>
-                <PageTitleChat>{commentStore.currentRoom.name}</PageTitleChat>
+                <PageTitleChat>{chatStore.currentRoom.name}</PageTitleChat>
                 </Test>
             </ChatHeaderContainer>
         )

@@ -3,10 +3,10 @@ import {observer, useObserver} from "mobx-react";
 import {useStore} from "../stores/store";
 
 function TitleComponent() {
-    const {commentStore} = useStore();
+    const { chatStore } = useStore();
 
     return useObserver(() => (
-        <Text style={styles.title}>{commentStore.test2.name}</Text>
+        <Text style={styles.title}>{chatStore.test2.name}</Text>
     ));
 }
 
