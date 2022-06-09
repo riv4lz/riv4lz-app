@@ -3,6 +3,7 @@ import {Ionicons} from "@expo/vector-icons";
 import * as React from "react";
 import {useStore} from "../../stores/store";
 import {useNavigation} from "@react-navigation/native";
+import {observer} from "mobx-react";
 
 // colors
 const { tertiary } = Colors;
@@ -23,4 +24,4 @@ const ChatHeaderComponent = () => {
     )
 };
 
-export default ChatHeaderComponent;
+export default observer(ChatHeaderComponent);

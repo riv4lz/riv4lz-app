@@ -9,6 +9,7 @@ import { ChatContainer,
     ProfileImage,
     UserName
 } from "../styles";
+import {observer} from "mobx-react";
 
 const ChatMessageContainerComponent = () => {
     const { chatStore } = useStore();
@@ -28,4 +29,4 @@ const ChatMessageContainerComponent = () => {
     )
 };
 
-export default ChatMessageContainerComponent;
+export default observer(ChatMessageContainerComponent);

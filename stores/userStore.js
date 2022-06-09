@@ -52,7 +52,7 @@ export class UserStore {
 
     @action
     updateUserProfile = (user: User) => {
-        userService.update(user).then(console.log("Profile succesfully updated"))
+        userService.update(user).then(r => console.log(r));
     }
 
     constructor() {

@@ -11,6 +11,7 @@ import {
     RoomButtonsImage,
 } from "../styles";
 import {useNavigation} from "@react-navigation/native";
+import {observer} from "mobx-react";
 
 
 
@@ -35,4 +36,4 @@ const ChatRoomsListComponent = () => {
     )
 }
 
-export default ChatRoomsListComponent;
+export default observer(ChatRoomsListComponent);

@@ -68,6 +68,7 @@ export default class ChatStore {
         this.hubConnection.on('LoadRooms', (chatRooms: ChatRoom) => {
             runInAction(() => {
                 this.chatRooms = chatRooms;
+                console.log(this.chatRooms);
             });
         });
 

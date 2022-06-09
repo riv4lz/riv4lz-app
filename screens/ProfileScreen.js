@@ -30,7 +30,8 @@ function ProfileScreen() {
 
 
     const test1 = async () => {
-        await pickImageCamera().then(updateInfo());
+        await updateInfo();
+        await sendInfo();
     }
 
     const test2 = async () => {
@@ -40,18 +41,14 @@ function ProfileScreen() {
     }
 
     const updateInfo = async () => {
-
         runInAction(() => {
-        userStore.user.name = userStore.user.name ;
-        userStore.user.description = userStore.user.description ;
-        userStore.user.facebookUrl = userStore.user.facebookUrl;
-        userStore.user.twitterUrl = userStore.user.twitterUrl;
-        userStore.user.discordUrl = userStore.user.discordUrl;
-        userStore.user.twitchUrl = userStore.user.twitchUrl;
-        userStore.user.profileImageUrl = profileImageUrl;
-        userStore.user.bannerImageUrl = userStore.user.bannerImageUrl;
-        userStore.updateUserProfile(userStore.user);
+            userStore.user.profileImageUrl = profileImageUrl;
         })
+        await sendInfo();
+    }
+
+    const sendInfo = () => {
+        userStore.updateUserProfile(userStore.user);
     }
 
     const sendImage = async () => {
@@ -93,7 +90,7 @@ function ProfileScreen() {
                 await setProfileImageUrl(data.secure_url)
                 return data.secure_url
                 console.log("fisk");
-                updateInfo().then(console.log(userStore.user));
+                test1();
             }).catch(err=>console.log(err))
         }
 
@@ -126,7 +123,7 @@ function ProfileScreen() {
                 await setProfileImageUrl(data.secure_url)
                 return data.secure_url
 
-                updateInfo().then(console.log(userStore.user));
+                test1();
             }).catch(err=>console.log(err))
         }
     }
@@ -146,7 +143,7 @@ function ProfileScreen() {
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
                             <Text style={styles.modalText}>Choose type</Text>
-                            <Button title={"Media"} onPress={()=>test1()} style={{marginTop: 10}}></Button>
+                            <Button title={"Media"} onPress={()=>pickImage()} style={{marginTop: 10}}></Button>
                             <Button title={"Camera"} onPress={()=>pickImageCamera()} style={{marginTop: 10}}></Button>
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}

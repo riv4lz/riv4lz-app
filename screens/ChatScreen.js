@@ -30,6 +30,7 @@ function ChatScreen ({ route, navigation }) {
     const [localMessage, setLocalMessage] = useState('');
 
     useEffect(() => {
+        console.log(id);
         enterRoom(id);
     }, []);
 
