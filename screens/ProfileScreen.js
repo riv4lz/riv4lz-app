@@ -14,7 +14,7 @@ import {InnerContainer, PageTitle, StyledContainer, SubTitle} from "../component
 import {runInAction} from "mobx";
 
 
-function ProfileScreen() {
+function ProfileScreen({ navigation }) {
     const [image, setImage] = useState(null);
     const [imageUrl1, setImageUrl1] = useState(null);
     const { userStore, authStore } = useStore();
@@ -165,6 +165,7 @@ function ProfileScreen() {
                 <Button title={"UPLOAD IMAGE"} onPress={()=>updateInfo()} style={{marginTop: 10}}></Button>
                 <PageTitle>{userStore.user.name}</PageTitle>
                 <SubTitle>{userStore.user.description}</SubTitle>
+                <Button title={"Edit profile"} onPress={()=>navigation.navigate('EditProfileScreen')}></Button>
             </InnerContainer>
         </StyledContainer>
     );

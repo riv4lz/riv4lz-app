@@ -14,6 +14,7 @@ import LoginScreen from "./screens/LoginScreen";
 import TestScreen from "./screens/TestScreen";
 import { observer } from "mobx-react";
 import ChatRoomsList from "./components/chat/ChatRoomsListComponent";
+import EditProfileScreen from "./screens/EditProfileScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -90,7 +91,7 @@ function App() {
                             />
                             <Tab.Screen
                                 name="Profile"
-                                component={ProfileScreen}
+                                component={ProfileView}
                                 initialParams={{ id: authStore.user.id }}
                                 options={{
                                     tabBarLabel: 'Profile',
@@ -128,6 +129,21 @@ function AuthView ({ navigation }) {
             }}>
             <Stack.Screen name="ChatRoomScreen" component={ChatRoomsScreen} />
             <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        </Stack.Navigator>
+    );
+}
+
+function ProfileView ({ navigation }) {
+
+    const Stack = createNativeStackNavigator();
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+                cardStyle: { backgroundColor: '#181818' }
+            }}>
+            <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+            <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
         </Stack.Navigator>
     );
 }
